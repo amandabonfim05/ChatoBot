@@ -1,6 +1,6 @@
 # Procont Bot — WhatsApp
 
-Bot de atendimento WhatsApp da Procont, rodando no Railway com MongoDB Atlas.
+Bot de atendimento WhatsApp da Procont, rodando no Render com MongoDB Atlas.
 
 ## Estrutura
 
