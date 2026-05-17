@@ -17,7 +17,7 @@
     "mongoose": "^8.4.1",
     "qrcode": "^1.5.3",
     "whatsapp-web.js": "^1.23.0",
-    "wwebjs-mongo": "^2.2.0"
+    "wwebjs-mongo": "*"
   },
   "devDependencies": {
     "nodemon": "^3.1.4"
