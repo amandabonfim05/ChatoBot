@@ -1,70 +1,91 @@
 # Procont Bot — WhatsApp
 
-Bot de atendimento WhatsApp da Procont, rodando no Render com MongoDB Atlas.
+This Node.js project is a WhatsApp chatbot for automating customer service in the accounting area. The bot interacts with clients via WhatsApp, providing quick access to services such as termination requests, vacation scheduling, tax recalculations, and billing requests. It reduces the need for manual attendance and ensures faster responses to common client demands.
 
-## Estrutura
+## Structure
 
 ```
 src/
-├── app.js               → Express setup
-├── server.js            → Entry point
+├── app.js          
+├── server.js          
 ├── config/
-│   ├── database.js      → Conexão MongoDB
-│   └── whatsapp.js      → Client WhatsApp
+│   ├── database.js      
+│   └── whatsapp.js    
 ├── controllers/
 │   ├── messageController.js
 │   └── qrController.js
 ├── handlers/
-│   ├── menuHandlers.js  → Mapa de opções do menu
-│   └── stateHandlers.js → Fluxos de estado (ex: aguardando_data)
+│   ├── menuHandlers.js  
+│   └── stateHandlers.js 
 ├── routes/
 │   ├── healthRoutes.js
 │   └── qrRoutes.js
 ├── utils/
 │   ├── delay.js
-│   ├── responder.js     → Helper que elimina código repetido
+│   ├── responder.js     
 │   ├── validators.js
 │   └── holidayValidator.js
 ├── states/
-│   └── userState.js     → Estado dos usuários em memória
+│   └── userState.js     
 ├── constants/
-│   ├── menus.js         → Textos dos menus
-│   └── messages.js      → Regex e constantes
+│   ├── menus.js       
+│   └── messages.js     
 ├── middlewares/
 │   └── errorHandler.js
 └── jobs/
-    └── keepAlive.js     → Ping periódico (dias úteis, 7h-19h)
+    └── keepAlive.js     
 ```
+# Overview
 
-## Variáveis de Ambiente
+Main features of the chatbot:
 
-Copie `.env.example` para `.env` e preencha:
+✅ Automatic WhatsApp responses via whatsapp-web.js
 
-```
-PORT=3000
-MONGO_URI=mongodb+srv://usuario:senha@cluster.mongodb.net/procont
-CHROMIUM_PATH=/usr/bin/chromium
-RAILWAY_URL=https://chatbot-production-d647.up.railway.app/health
-```
+✅ Integration with MongoDB Atlas for session storage (RemoteAuth)
 
-## Deploy no Railway
+✅ Keeps session active even after deployment (no need to scan QR code every time)
 
-1. Suba o projeto para o GitHub
-2. No Railway, crie um novo projeto → "Deploy from GitHub repo"
-3. Adicione as variáveis de ambiente acima nas Settings do Railway
-4. O Railway detecta automaticamente o `npm start` do `package.json`
-5. Acesse `https://seu-app.up.railway.app/qr` para escanear o QR Code
+✅ Custom menu for client interactions:
 
-## Comando !fechar
+Request termination (worked or indemnified notice)
 
-Para encerrar um atendimento humano e liberar o bot novamente, o atendente envia:
-```
-!fechar
-```
-na conversa do cliente via WhatsApp Web/App do atendente.
+Request vacation scheduling with holiday validation
 
-## Para escalar futuramente
+Request tax recalculation
 
-- **Estado em Redis**: substitua `src/states/userState.js` por conexão Redis (ex: `ioredis`)
-- **Novo menu**: adicione entrada em `src/handlers/menuHandlers.js` e texto em `src/constants/menus.js`
-- **Novo estado de fluxo**: adicione handler em `src/handlers/stateHandlers.js`
+Request billing
+
+Speak directly with an attendant
+
+Cancel service
+
+✅ Health check endpoint (/health) for Render deployment
+
+# Technologies Used
+
+Node.js
+
+Express.js
+
+whatsapp-web.js (with RemoteAuth)
+
+MongoDB Atlas (with wwebjs-mongo for session persistence)
+
+Render (cloud hosting)
+
+# Objectives
+
+- Automate customer service for accounting processes
+- Store WhatsApp sessions remotely to avoid repeated QR scans
+- Validate vacation dates against holidays
+- Provide a scalable and production-ready deployment on Render
+
+# Contact
+
+Developed by Amanda Bonfim
+
+GitHub: @amandabonfim05
+
+LinkedIn: www.linkedin.com/in/amanda-casé-bonfim
+
+Email: amandabonfim05@gmail.com
