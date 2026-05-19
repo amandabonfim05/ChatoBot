@@ -1,6 +1,6 @@
 const https = require('https');
 
-const RAILWAY_URL = process.env.RAILWAY_URL || 'https://chatbot-production-d647.up.railway.app/health';
+const RENDER_URL = process.env.RENDER_URL || 'https://chatobot-procont.onrender.com';
 const INTERVALO_MS = 14 * 60 * 1000;
 
 function pingKeepAlive() {
@@ -17,7 +17,7 @@ function pingKeepAlive() {
         return;
     }
 
-    https.get(RAILWAY_URL, (res) => {
+    https.get(RENDER_URL, (res) => {
         console.log(`Keep-alive ping: ${res.statusCode}`);
     }).on('error', err => {
         console.error('Erro no keep-alive:', err.message);
